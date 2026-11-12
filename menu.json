@@ -1,0 +1,26 @@
+[
+  {
+    "nama": "Croissant",
+    "kategori": "Makanan",
+    "harga": 200000,
+    "image": "croissant.jpg"
+  },
+  {
+    "nama": "Es Teh",
+    "kategori": "Minuman",
+    "harga": 10000,
+    "image": "es_teh.jpg"
+  },
+  {
+    "nama": "Mie Ayam",
+    "kategori": "Makanan",
+    "harga": 18000,
+    "image": "mie_ayam.jpg"
+  },
+  {
+    "nama": "Kopi Susu",
+    "kategori": "Minuman",
+    "harga": 15000,
+    "image": "kopi_susu.jpg"
+  }
+]
