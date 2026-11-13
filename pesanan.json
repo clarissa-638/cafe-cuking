@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "tgl": "12/11/2026",
+    "nama": "jose",
+    "pesanan": "Es Teh (x1), Mie Ayam (x1), Kopi Susu (x1)",
+    "total": 38000,
+    "status": "Lunas",
+    "metode": "QRIS"
+  },
+  {
+    "id": 2,
+    "tgl": "12/11/2026",
+    "nama": "maurinho",
+    "pesanan": "Kopi Susu (x3)",
+    "total": 45000,
+    "status": "Lunas",
+    "metode": "Tunai"
+  },
+  {
+    "id": 3,
+    "tgl": "12/11/2026",
+    "nama": "afd",
+    "pesanan": "Mie Ayam (x3)",
+    "total": 54000,
+    "status": "Lunas",
+    "metode": "Kartu Kredit"
+  },
+  {
+    "id": 4,
+    "tgl": "12/11/2026",
+    "nama": "EEWQR",
+    "pesanan": "Mie Ayam (x4)",
+    "total": 72000,
+    "status": "Lunas",
+    "metode": "Redeem Code"
+  },
+  {
+    "id": 5,
+    "tgl": "12/11/2026",
+    "nama": "feli",
+    "pesanan": "Mie Ayam (x2)",
+    "total": 36000,
+    "status": "Lunas",
+    "metode": "Tunai",
+    "dibayar": 40000,
+    "kembalian": 4000
+  },
+  {
+    "id": 6,
+    "tgl": "12/11/2026",
+    "nama": "jose napit",
+    "pesanan": "Croissant (x1), Es Teh (x1), Mie Ayam (x1)",
+    "total": 43000,
+    "status": "Belum Lunas",
+    "metode": "-"
+  },
+  {
+    "id": 7,
+    "tgl": "12/11/2026",
+    "nama": "aseep",
+    "pesanan": "Es Teh (x1)",
+    "total": 10000,
+    "status": "Belum Lunas",
+    "metode": "-"
+  }
+]
