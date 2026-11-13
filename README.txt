@@ -25,3 +25,5 @@ Akun login:
 Catatan:
 File pembeli.py mempertahankan fitur menu, pencarian, kategori,
 keranjang, total harga, dan konfirmasi pesanan dari kode awal.
+
+testing
