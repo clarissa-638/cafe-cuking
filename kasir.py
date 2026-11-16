@@ -5,6 +5,7 @@ from datetime import datetime
 import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
+import qrcode
 
 import data
 
@@ -56,7 +57,7 @@ def create_kasir_frame(window, logout):
     kasir_frame = tk.Frame(window)
     selected = {"order": None}
 
-    # ---------- Background ----------
+    #  Background 
     bg_label = tk.Label(kasir_frame)
     bg_label.place(x=0, y=0, relwidth=1, relheight=1)
     bg_original = Image.open(os.path.join(BASE, "background.jpg"))
@@ -139,7 +140,7 @@ def create_kasir_frame(window, logout):
     canvas.bind("<Enter>", lambda e: canvas.bind_all("<MouseWheel>", on_wheel))
     canvas.bind("<Leave>", lambda e: canvas.unbind_all("<MouseWheel>"))
 
-    # ---------- Isi list ----------
+    #  Isi list 
     def add_card(o):
         card = tk.Frame(inner, bg=CARD_BG, highlightbackground=PANEL_LINE, highlightthickness=1)
         card.pack(fill="x", pady=6, padx=(0, 8))
@@ -242,7 +243,7 @@ def create_kasir_frame(window, logout):
                 font_size=10, ipady=3, ipadx=16).pack(pady=(22, 0))
 
     # =====================================================
-    #               PANEL 3: QRIS (TAMPILKAN QR)
+    #               PANEL 3: QRIS (QR DIGAMBAR DI CANVAS)
     # =====================================================
     qris_panel = tk.Frame(kasir_frame, bg=PANEL_BG,
                           highlightbackground=PANEL_LINE, highlightthickness=2)
@@ -252,18 +253,26 @@ def create_kasir_frame(window, logout):
     qris_info = tk.Label(qris_panel, text="", font=(FONT, 11), bg=PANEL_BG, fg=SOFT)
     qris_info.pack()
 
-    # Gambar QR (qr code.jpeg), digambar ke Canvas supaya ada bingkai putih rapi
+    # QR dibuat dari library qrcode lalu digambar kotak per kotak di Canvas
     qr_canvas = tk.Canvas(qris_panel, width=260, height=260, bg="white",
                           highlightbackground=PANEL_LINE, highlightthickness=2)
     qr_canvas.pack(pady=15)
-    try:
-        qr_img = Image.open(os.path.join(BASE, "qr code.jpeg")).resize((240, 240), Image.LANCZOS)
-        qr_photo = ImageTk.PhotoImage(qr_img)
-        qr_canvas.create_image(130, 130, image=qr_photo)
-        qr_canvas.image = qr_photo          # simpan referensi supaya tidak hilang
-    except (OSError, FileNotFoundError):
-        qr_canvas.create_text(130, 130, text="File 'qr code.jpeg'\ntidak ditemukan",
-                              font=(FONT, 11), fill=SOFT, justify="center")
+
+    def draw_qr(teks, ukuran=256):
+        """Buat QR dari teks lalu gambar kotak-kotaknya di Canvas."""
+        qr_canvas.delete("all")
+        qr = qrcode.QRCode(border=4, error_correction=qrcode.constants.ERROR_CORRECT_M)
+        qr.add_data(teks)
+        qr.make(fit=True)
+        matrix = qr.get_matrix()
+        sel = max(1, ukuran // len(matrix))          # ukuran 1 kotak
+        offset = (260 - sel * len(matrix)) // 2      # biar QR di tengah
+        for r, baris in enumerate(matrix):
+            for c, gelap in enumerate(baris):
+                if gelap:
+                    x, y = offset + c * sel, offset + r * sel
+                    qr_canvas.create_rectangle(x, y, x + sel, y + sel,
+                                               fill="black", outline="black")
 
     tk.Label(qris_panel, text="Minta pelanggan scan QR di atas,\nlalu tekan tombol setelah pembayaran berhasil.",
              font=(FONT, 10), bg=PANEL_BG, fg=SOFT, justify="center").pack()
@@ -297,7 +306,7 @@ def create_kasir_frame(window, logout):
     def digits(text):
         return "".join(c for c in text if c.isdigit())
 
-    # ---------------- TUNAI ----------------
+    #  TUNAI 
     # Aturan: uang diterima harus >= total, kembalian dihitung otomatis.
     tunai_panel, tunai_info = new_panel("───  Pembayaran Tunai  ───")
     field_label(tunai_panel, "Uang diterima (Rp)")
@@ -356,7 +365,7 @@ def create_kasir_frame(window, logout):
     make_button(tunai_panel, "Kembali", lambda: show_payment_methods(), bg=BTN_SOFT,
                 fg=LABEL, font_size=10, ipady=3, ipadx=16).pack()
 
-    # ---------------- KARTU KREDIT ----------------
+    #  KARTU KREDIT 
     # Aturan: nomor 16 digit & lolos cek Luhn, nama diisi, masa berlaku MM/YY
     # belum lewat, CVV 3 digit. Data kartu TIDAK disimpan.
     kartu_panel, kartu_info = new_panel("───  Kartu Kredit  ───")
@@ -423,7 +432,7 @@ def create_kasir_frame(window, logout):
     make_button(kartu_panel, "Kembali", lambda: show_payment_methods(), bg=BTN_SOFT,
                 fg=LABEL, font_size=10, ipady=3, ipadx=16).pack()
 
-    # ---------------- REDEEM CODE ----------------
+    #  REDEEM CODE 
     # Aturan: kode harus terdaftar, belum pernah dipakai, dan nilai voucher
     # harus cukup menutup total pesanan.
     redeem_panel, redeem_info = new_panel("───  Redeem Code  ───")
@@ -464,7 +473,7 @@ def create_kasir_frame(window, logout):
     make_button(redeem_panel, "Kembali", lambda: show_payment_methods(), bg=BTN_SOFT,
                 fg=LABEL, font_size=10, ipady=3, ipadx=16).pack()
 
-    # ---------- Pindah halaman dalam kasir ----------
+    #  Pindah halaman dalam kasir 
     panels = {
         "pay":    (pay_panel,    480, 520),
         "qris":   (qris_panel,   480, 600),
@@ -503,6 +512,7 @@ def create_kasir_frame(window, logout):
         o = selected["order"]
         if o:
             qris_info.config(text=info_text(o))
+            draw_qr(f"{o['nama']}_total_Rp {o['total']}")
             show_panel("qris")
 
     def open_tunai():
