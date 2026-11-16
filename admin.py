@@ -6,7 +6,7 @@ from PIL import Image, ImageTk
 
 import data
 
-# ====== Warna (sama dengan halaman login & kasir) ======
+# Warna (sama dengan halaman login & kasir)
 PANEL_BG   = "#FFFBF7"
 PANEL_LINE = "#D9C3B0"
 CARD_BG    = "#F8E8E3"
@@ -86,7 +86,7 @@ def create_admin_frame(window, logout):
              bg=PANEL_BG, fg=SOFT).pack(side="left")
 
     # Tombol Logout (dipack dulu supaya selalu terlihat di bawah)
-    make_button(list_panel, "Logout", logout, bg=BTN_SOFT, fg=LABEL,
+    make_button(list_panel, "Keluar", logout, bg=BTN_SOFT, fg=LABEL,
                 font_size=11, ipadx=18).pack(side="bottom", pady=12)
 
     wrap = tk.Frame(list_panel, bg=PANEL_BG)
