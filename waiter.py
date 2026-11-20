@@ -1,4 +1,3 @@
-
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 
@@ -23,7 +22,7 @@ def create_waiter_frame(parent, on_logout=None):
 
     tk.Label(
         header_waiter,
-        text="◉  Layout Meja",
+        text="◉ Layout Meja",
         font=("Poppins", 18, "bold"),
         bg="#E8C6B8",
         fg="#6E4A35"
@@ -79,6 +78,9 @@ def create_waiter_frame(parent, on_logout=None):
 
             tombol.config(
                 text=f"Meja {nomor}\nKOSONG",
+                font=("Poppins", 17, "bold"),
+                wraplength=0,
+                justify="center",
                 bg="#FFF8F0",
                 fg="#6E4A35",
                 activebackground="#E8C6B8"
@@ -92,6 +94,9 @@ def create_waiter_frame(parent, on_logout=None):
                     f"DIBOOKING\n"
                     f"Atas nama: {data['nama']}"
                 ),
+                font=("Poppins", 12, "bold"),
+                wraplength=280,
+                justify="center",
                 bg="#D9A18F",
                 fg="white",
                 activebackground="#C88A75"
