@@ -6,21 +6,75 @@
     "image": "croissant.jpg"
   },
   {
-    "nama": "Es Teh",
-    "kategori": "Minuman",
-    "harga": 5000,
-    "image": "es_teh.jpg"
-  },
-  {
-    "nama": "Mie Ayam",
+    "nama": "Cheese cake",
     "kategori": "Makanan",
-    "harga": 18000,
-    "image": "mie_ayam.jpg"
+    "harga": 20000,
+    "image": "cheese cake.jpg"
   },
   {
-    "nama": "Kopi Susu",
+    "nama": "Cromboloni",
+    "kategori": "Makanan",
+    "harga": 15000,
+    "image": "cromboloni.webp"
+  },
+  {
+    "nama": "Puff pastry",
+    "kategori": "Makanan",
+    "harga": 10000,
+    "image": "puff pastry.webp"
+  },
+  {
+    "nama": "Soft cookies",
+    "kategori": "Makanan",
+    "harga": 15000,
+    "image": "soft cookies.jpg"
+  },
+  {
+    "nama": "Pie",
+    "kategori": "Makanan",
+    "harga": 8000,
+    "image": "pie.webp"
+  },
+  {
+    "nama": "Chocolate lava cake",
+    "kategori": "Makanan",
+    "harga": 15000,
+    "image": "choko.png"
+  },
+  {
+    "nama": "Americano",
     "kategori": "Minuman",
     "harga": 15000,
-    "image": "kopi_susu.jpg"
+    "image": "americano.webp"
+  },
+  {
+    "nama": "Latte",
+    "kategori": "Minuman",
+    "harga": 15000,
+    "image": "latte.webp"
+  },
+  {
+    "nama": "Macchiato",
+    "kategori": "Minuman",
+    "harga": 15000,
+    "image": "macchiato.webp"
+  },
+  {
+    "nama": "Matcha latte",
+    "kategori": "Minuman",
+    "harga": 15000,
+    "image": "matcha.webp"
+  },
+  {
+    "nama": "Hot chocolate",
+    "kategori": "Minuman",
+    "harga": 15000,
+    "image": "hot coklat.webp"
+  },
+  {
+    "nama": "Thai tea",
+    "kategori": "Minuman",
+    "harga": 15000,
+    "image": "thai tea.jpg"
   }
 ]
